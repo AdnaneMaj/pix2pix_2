@@ -1,11 +1,11 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from pix2pix.utils import save_checkpoint,load_checkpoint,save_some_examples
-from pix2pix import config
-from pix2pix.dataset import Costum
-from pix2pix.generator import Generator
-from pix2pix.discriminator import Discriminator
+from pix2pix_2.utils import save_checkpoint,load_checkpoint,save_some_examples
+from pix2pix_2 import config
+from pix2pix_2.dataset import Costum
+from pix2pix_2.generator import Generator
+from pix2pix_2.discriminator import Discriminator
 from torch.utils.data import DataLoader
 from tqdm import tqdm #for progress bar
 from torchvision.utils import save_image
