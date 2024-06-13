@@ -38,7 +38,7 @@ base_transform = transforms.Compose([
 
 paired_transform = PairedTransform(base_transform)
         
-default_path = "../input/Drive DATA/"
+default_path = "/kaggle/input/drive-22/Drive_data"
 class Costum(Dataset):
     def __init__(self,root_dir=default_path,paired_transform=paired_transform,val=False):
         self.root_dir = root_dir
