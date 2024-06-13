@@ -34,13 +34,13 @@ class PairedTransform:
 
 
 base_transform_seg = transforms.Compose([
-    transforms.Resize((256,256)),
+    transforms.Resize((512,512)),
     transforms.ToTensor(),
     transforms.Normalize((0.5,),(0.5,)),
 ])
 
 base_transform_rgb = transforms.Compose([
-    transforms.Resize((256,256)),
+    transforms.Resize((512,512)),
     transforms.ToTensor(),
     transforms.Normalize((0.5,0.5,0.5),(0.5,0.5,0.5)),
 ])
@@ -57,7 +57,7 @@ class Costum(Dataset):
         self.list_files_rgb = os.listdir(root_dir+"rgb/images/") if not val else os.listdir(root_dir+"rgb_val/images/")
 
     def __len__(self):
-        return len(self.list_files_rgb)*10 if not self.val else 2
+        return len(self.list_files_rgb)*50 if not self.val else 2
     
     def __getitem__(self,idx):
         idx = idx%len(self.list_files_seg)
