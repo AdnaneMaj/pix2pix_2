@@ -10,8 +10,8 @@ def save_some_examples(gen, val_loader, epoch, folder):
         y_fake = gen(x)
         y_fake = y_fake * 0.5 + 0.5
         save_image(y_fake, folder+f"/y_gen_{epoch}.png")
-        save_image(x * 0.5 + 0.5, folder+f"/x_input_{epoch}.png")
-        save_image(y * 0.5 + 0.5, folder+f"/y_real_{epoch}.png")
+        #save_image(x * 0.5 + 0.5, folder+f"/x_input_{epoch}.png")
+        #save_image(y * 0.5 + 0.5, folder+f"/y_real_{epoch}.png")
     gen.train()
 
 def save_checkpoint(model, optimizer, filename="my_checkpoint.pth.tar"):
