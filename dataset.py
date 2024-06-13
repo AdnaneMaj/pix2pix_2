@@ -24,10 +24,10 @@ class PairedTransform:
         seg_img = TF.rotate(seg_img,angle)
         rgb_img = TF.rotate(rgb_img,angle)
 
-        if self.base_transform__seg:
+        if self.base_transform_seg:
             seg_img = self.base_transform_seg(seg_img)
 
-        if self.base_transform__seg:
+        if self.base_transform_rgb:
             rgb_img = self.base_transform_rgb(rgb_img)
 
         return seg_img,rgb_img
