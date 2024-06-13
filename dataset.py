@@ -7,8 +7,9 @@ import torchvision.transforms as transforms
 import torchvision.transforms.functional as TF
 
 class PairedTransform:
-    def __init__(self,base_transform):
-        self.base_transform = base_transform
+    def __init__(self,base_transform_seg,base_transform_rgb):
+        self.base_transform_seg = base_transform_seg
+        self.base_transform_rgb = base_transform_rgb
 
     def __call__(self, seg_img, rgb_img):
         if random.random() > 0.5:
@@ -23,20 +24,28 @@ class PairedTransform:
         seg_img = TF.rotate(seg_img,angle)
         rgb_img = TF.rotate(rgb_img,angle)
 
-        if self.base_transform:
-            seg_img = self.base_transform(seg_img)
-            rgb_img = self.base_transform(rgb_img)
+        if self.base_transform__seg:
+            seg_img = self.base_transform_seg(seg_img)
+
+        if self.base_transform__seg:
+            rgb_img = self.base_transform_rgb(rgb_img)
 
         return seg_img,rgb_img
 
 
-base_transform = transforms.Compose([
+base_transform_seg = transforms.Compose([
     transforms.Resize((256,256)),
     transforms.ToTensor(),
     transforms.Normalize((0.5,),(0.5,)),
 ])
 
-paired_transform = PairedTransform(base_transform)
+base_transform_rgb = transforms.Compose([
+    transforms.Resize((256,256)),
+    transforms.ToTensor(),
+    transforms.Normalize((0.5,0.5,0.5),(0.5,0.5,0.5)),
+])
+
+paired_transform = PairedTransform(base_transform_seg,base_transform_rgb)
         
 default_path = "/kaggle/input/drive-22/Drive_data/"
 class Costum(Dataset):
