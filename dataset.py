@@ -53,18 +53,18 @@ class Costum(Dataset):
         self.root_dir = root_dir
         self.val = val
         self.paired_transform = paired_transform
-        self.list_files_seg = os.listdir(root_dir+"seg/seg/") if not val else os.listdir(root_dir+"seg_val/seg/")
-        self.list_files_rgb = os.listdir(root_dir+"rgb/images/") if not val else os.listdir(root_dir+"rgb_val/images/")
+        self.list_files_seg = os.listdir(root_dir+"seg/seg/") #if not val else os.listdir(root_dir+"seg_val/seg/")
+        self.list_files_rgb = os.listdir(root_dir+"rgb/images/") #if not val else os.listdir(root_dir+"rgb_val/images/")
 
     def __len__(self):
-        return len(self.list_files_rgb)*50 if not self.val else 2
+        return len(self.list_files_rgb)*20 if not self.val else 1
     
     def __getitem__(self,idx):
         idx = idx%len(self.list_files_seg)
         input_img = self.list_files_seg[idx]
         target_img = self.list_files_rgb[idx]
-        input_img = Image.open(self.root_dir+"seg/seg/"+input_img).convert("L") if not self.val else Image.open(self.root_dir+"seg_val/seg/"+input_img).convert("L")
-        target_img = Image.open(self.root_dir+"rgb/images/"+target_img).convert("RGB") if not self.val else Image.open(self.root_dir+"rgb_val/images/"+target_img).convert("RGB")
+        input_img = Image.open(self.root_dir+"seg/seg/"+input_img).convert("L") #if not self.val else Image.open(self.root_dir+"seg_val/seg/"+input_img).convert("L")
+        target_img = Image.open(self.root_dir+"rgb/images/"+target_img).convert("RGB")# if not self.val else Image.open(self.root_dir+"rgb_val/images/"+target_img).convert("RGB")
 
         if self.paired_transform:
             input_img,target_img = self.paired_transform(input_img,target_img)
