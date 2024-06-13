@@ -57,7 +57,7 @@ class Costum(Dataset):
         self.list_files_rgb = os.listdir(root_dir+"rgb/images/") if not val else os.listdir(root_dir+"rgb_val/images/")
 
     def __len__(self):
-        return len(self.list_files_rgb)*100 if not self.val else 2
+        return len(self.list_files_rgb)*10 if not self.val else 2
     
     def __getitem__(self,idx):
         idx = idx%len(self.list_files_seg)
